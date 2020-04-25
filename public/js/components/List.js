@@ -2,23 +2,7 @@ import { singleElement } from '../core.js';
 
 function List() {
 
-    this.items = [
-        {
-            title: 'Study',
-            deadline: '23.09.2019',
-            status: 'done'
-        },
-        {
-            title: 'Buy products',
-            deadline: '23.09.2020',
-            status: 'incomplete'
-        },
-        {
-            title: 'Something else',
-            deadline: '23.09.2020',
-            status: 'irrelevant'
-        }
-    ];
+    this.items = [];
 
     this.template = `
         <div>
@@ -31,11 +15,19 @@ function List() {
     `;
 };
 
+List.prototype.getData = async function () {
+    let response = await fetch('/list', { method: 'GET' });
+    let data = await response.json();
+
+    this.items = data.list;
+};
+
 List.prototype.render = async function () {
     return this.template;
 };
 
 List.prototype.postRender = async function () {
+    await this.getData();
     let list = document.getElementById('listitems');
     
     this.items.map(i => {
@@ -72,7 +64,6 @@ List.prototype.postRender = async function () {
                 'button-danger'
             )
         );
-
 
         let row = singleElement('tr');
 

@@ -13,6 +13,6 @@ app.get('/', (req, res) => {
     res.render('index.html');
 });
 
-// TODO: add API routes
+app.use('/list', require('./routes/itemlist'));
 
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
