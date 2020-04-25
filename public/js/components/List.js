@@ -6,11 +6,12 @@ function List() {
 
     this.template = `
         <div>
-        <h3>List</h3>
-        <p>Main functionality page</p>
-        <div id='button_group'></div>
-        <table id='listitems'></table>
-
+            <h3>List</h3>
+            <p>Main functionality page</p>
+            <div id='button_group'></div>
+            <div class='table-wrapper'>
+                <table id='listitems'></table>
+            </div>
         </div>
         <div id='listmodal' class='modal'>
             <div class='modal-content'>
