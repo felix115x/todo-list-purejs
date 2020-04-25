@@ -22,6 +22,24 @@ List.prototype.getData = async function () {
     this.items = data.list;
 };
 
+List.prototype.editEntry = async function (id) {
+    let response = await fetch(`/list/${id}`, { method: 'PUT' });
+    let data = await response.json();
+
+    this.items = data.list;
+};
+
+List.prototype.deleteEntry = async function (id) {
+    let response = await fetch(`/list/${id}`, { method: 'DELETE' });
+    let data = await response.json();
+
+    this.items = data.list;
+    
+    // TODO: move to abstraction layer
+    let row = document.getElementById(`entry_${id}`);
+    row.parentNode.removeChild(row);
+};
+
 List.prototype.render = async function () {
     return this.template;
 };
@@ -29,7 +47,7 @@ List.prototype.render = async function () {
 List.prototype.postRender = async function () {
     await this.getData();
     let list = document.getElementById('listitems');
-    
+    console.log(this.items);
     this.items.map(i => {
         let title = singleElement('td', i.title);
         let deadline = singleElement('td', i.deadline);
@@ -43,7 +61,7 @@ List.prototype.postRender = async function () {
                 {
                     type: 'click',
                     action: () => {
-                        console.log('CLICKED THE EDIT BUTTON ' + i.title);
+                        this.editEntry(i.id);
                     }
                 },
                 'button-primary'
@@ -58,7 +76,7 @@ List.prototype.postRender = async function () {
                 {
                     type: 'click',
                     action: () => {
-                        console.log('CLICKED THE DELETE BUTTON ' + i.title);
+                        this.deleteEntry(i.id);
                     }
                 },
                 'button-danger'
@@ -66,6 +84,7 @@ List.prototype.postRender = async function () {
         );
 
         let row = singleElement('tr');
+        row.id = `entry_${i.id}`;
 
         row.appendChild(title)
         row.appendChild(deadline)
