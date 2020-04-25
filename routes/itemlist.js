@@ -27,9 +27,29 @@ router.get('/', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    console.log(req.params)
     console.log(req.params.id + ' has been edited');
-    res.json({ msg: 'Success! edited ' + req.param.id});
+    console.log(req.body);
+    let alteredItems = [
+        {
+            id: 1,
+            title: 'Study',
+            deadline: '23.09.2019',
+            status: 'done'
+        },
+        {
+            id: 2,
+            title: 'Buy products',
+            deadline: '23.09.2020',
+            status: 'done'
+        },
+        {
+            id: 3,
+            title: 'Something else',
+            deadline: '23.09.2020',
+            status: 'urgent'
+        }
+    ];
+    res.json({ list: alteredItems });
 });
 
 router.delete('/:id', (req, res) => {

@@ -24,6 +24,11 @@ const addClass = (element, className) => {
     return element;
 };
 
+const removeElement = (id) => {
+    let child = document.getElementById(id);
+    child.parentNode.removeChild(child);
+};
+
 const listener = (action, ...event) => {
     event.forEach(e => {
         window.addEventListener(e, action);
@@ -32,5 +37,6 @@ const listener = (action, ...event) => {
 
 export {
     singleElement,
-    listener
+    listener,
+    removeElement
 };
