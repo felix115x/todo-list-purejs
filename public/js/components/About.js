@@ -1,6 +1,7 @@
 function About() {
 
     this.template = `
+        <h3>About</h3>
         <div>This is the about section</div>
     `;
 };

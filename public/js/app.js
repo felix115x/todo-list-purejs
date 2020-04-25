@@ -49,10 +49,6 @@ const App = () => {
     };
 
     listener(router, 'load', 'hashchange');
-    /* 
-    window.addEventListener('load', router);
-    window.addEventListener('hashchange', router);
-    */
 };
 
 App();

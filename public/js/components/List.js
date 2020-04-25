@@ -53,7 +53,8 @@ List.prototype.postRender = async function () {
                     action: () => {
                         console.log('CLICKED THE EDIT BUTTON ' + i.title);
                     }
-                }
+                },
+                'button-primary'
             )
         );
 
@@ -67,7 +68,8 @@ List.prototype.postRender = async function () {
                     action: () => {
                         console.log('CLICKED THE DELETE BUTTON ' + i.title);
                     }
-                }
+                },
+                'button-danger'
             )
         );
 

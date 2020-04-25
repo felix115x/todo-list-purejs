@@ -2,7 +2,7 @@
  * Custom made DOM API abstraction layer to quickly create new elements
  */
 
-const singleElement = (tag, content = null, event = null) => {
+const singleElement = (tag, content = null, event = null, className = null) => {
     let element = document.createElement(tag);
     if (content) {
         element.innerHTML = content;
@@ -11,7 +11,16 @@ const singleElement = (tag, content = null, event = null) => {
         const { type, action } = event;
         element.addEventListener(type, action);
     }
+
+    if (className) {
+        element.className = className;
+    }
     
+    return element;
+};
+
+const addClass = (element, className) => {
+    element.className += ' ' + className.trim();
     return element;
 };
 
